@@ -35,6 +35,9 @@ jobs:
                 path: merged
                 pattern: build-*
             
+            - name: Set version
+              run: echo "RELEASE_VERSION=dev-${COMMIT_HASH}" >> $GITHUB_ENV
+
             - name: List merged files
               run: ls -R merged
 
@@ -46,4 +49,4 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                   name: release-${{ github.ref_name }}
-                  path: release-${{ github.ref_name }}.zip
+                  path: release-${{ env.RELEASE_VERSION }}.zip

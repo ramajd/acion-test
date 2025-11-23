@@ -1,0 +1,26 @@
+name: Deploy new Release
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*.*.*'
+
+jobs:
+    build:
+        strategy:
+            matrix:
+                runs-on: [ubuntu-latest, windows-latest, macos-latest]
+        runs-on: ${{ matrix.runs-on }}
+        steps:
+            - name: create folder
+              run: mkdir build-${{ matrix.runs-on }}
+            
+            - name: create file
+              run: echo "This is a build for ${{ matrix.runs-on }}" > build-${{ matrix.runs-on }}/build-${{ matrix.runs-on }}.txt
+
+            - name: Upload build artifact
+              uses: actions/upload-artifact@v3
+              with:
+                  name: build-${{ matrix.runs-on }}
+                  path: build-${{ matrix.runs-on }}

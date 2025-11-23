@@ -20,7 +20,7 @@ jobs:
               run: echo "This is a build for ${{ matrix.runs-on }}" > build-${{ matrix.runs-on }}/build-${{ matrix.runs-on }}.txt
 
             - name: Upload build artifact
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: build-${{ matrix.runs-on }}
                   path: build-${{ matrix.runs-on }}

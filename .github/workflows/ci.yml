@@ -34,10 +34,7 @@ jobs:
               with:
                 name: merge artifacts
                 path: merged/build
-                pattern: |
-                    build-ubuntu-latest/**
-                    build-windows-latest/**
-                    build-macos-latest/**
+                pattern: build-*
             
             - name: List merged files
               run: ls -R merged/build
